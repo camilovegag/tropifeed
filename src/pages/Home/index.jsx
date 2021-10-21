@@ -1,33 +1,39 @@
 import { useEffect, useState } from "react";
+import { collection, onSnapshot } from "@firebase/firestore";
+import db from "../../firebase";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [posts, setPosts] = useState([]);
 
-  const fetchData = async () => {
-    const response = await fetch("data.json");
-    const feedData = await response.json();
-    setData(feedData);
-  };
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "posts"), (snapshot) => {
+        setPosts(snapshot.docs.map((post) => ({ ...post.data(), id: post.id })));
+      }),
+    []
+  );
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  console.log(posts.length);
 
   return (
     <main>
       <Header title="Inicio" />
       <section className={styles.cards}>
-        {data.map((data, idx) => (
-          <Card
-            key={idx}
-            imgLink={data.imgLink}
-            title={data.title}
-            description={data.description}
-          />
-        ))}
+        {posts.length === 0 ? (
+          <p>No hay nada por aquí...</p>
+        ) : (
+          posts.map((post) => (
+            <Card
+              key={post.id}
+              link={post.image}
+              title={post.name}
+              description={post.description}
+            />
+          ))
+        )}
       </section>
     </main>
   );
