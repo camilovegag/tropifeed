@@ -4,15 +4,35 @@
 *::after,
 *::before {
   box-sizing: border-box;
-  margin: 0;
 }
 
 body {
-  font-family: "Work Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  margin: 0;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Work Sans", sans-serif;
+  line-height: 1.2;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+img {
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.5rem 0;
+}
+
+p {
+  margin: 0.25rem 0;
 }
