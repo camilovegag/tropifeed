@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <main>
       <h1>Inicio</h1>
-      <hr />
+      <hr className={styles.divider} />
       <section className={styles.cards}>
         {data.map((data, idx) => (
           <Card
