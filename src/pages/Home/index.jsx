@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "../../components/Card";
+import Header from "../../components/Header";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -17,8 +18,7 @@ const Home = () => {
 
   return (
     <main>
-      <h1>Inicio</h1>
-      <hr className={styles.divider} />
+      <Header title="Inicio" />
       <section className={styles.cards}>
         {data.map((data, idx) => (
           <Card
