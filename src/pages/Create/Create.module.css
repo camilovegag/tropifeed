@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+[type="submit"] {
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, auto);
+    gap: 1.5rem;
+  }
+
+  [name="descripcion"] {
+    grid-column: 1/3;
+  }
+  [type="submit"] {
+    grid-column: 1/2;
+    width: 35%;
+  }
+}
+
+@media (min-width: 1024px) {
+  [type="submit"] {
+    width: 25%;
+  }
+}
