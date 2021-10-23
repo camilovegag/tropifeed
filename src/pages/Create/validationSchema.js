@@ -2,23 +2,24 @@ import * as Yup from "yup";
 
 const validationSchema = Yup.object({
   imagen: Yup.string()
-    .max(100, "100 caracteres o menos")
+    .min(5, "5 caracteres o más")
+    .max(200, "200 caracteres o menos")
     .required("Ingresa el link de una imagen."),
   nombre: Yup.string()
     .min(3, "3 caracteres o más.")
     .max(60, "60 caracteres o menos.")
     .required("Ingresa un nombre."),
-  peso: Yup.number().max(12, "12 caracteres o menos").required("Ingresa el peso."),
+  peso: Yup.number().min(0, "Ingresa un peso mayor a 0").required("Ingresa el peso."),
   epocaDeRecoleccion: Yup.string().required("Selecciona una época de recolección."),
   cantidad: Yup.number()
-    .max(12, "12 caracteres o menos.")
+    .min(0, "Ingresa un peso mayor a 0")
     .required("Ingresa la cantidad del producto."),
-  proteina: Yup.number().max(12, "12 caracteres o menos."),
-  lignina: Yup.number().max(12, "12 caracteres o menos."),
-  hemicelulosa: Yup.number().max(12, "12 caracteres o menos."),
+  proteina: Yup.number().min(0, "Ingresa un valor de proteina mayor a 0"),
+  lignina: Yup.number().min(0, "Ingresa un valor de lignina mayor a 0"),
+  hemicelulosa: Yup.number().min(0, "Ingresa un valor de hemicelulosa mayor a 0"),
   descripcion: Yup.string()
     .min(10, "10 caracteres o más.")
-    .max(100, "100 caracteres o menos.")
+    .max(180, "180 caracteres o menos.")
     .required("Ingresa una descripción."),
 });
 
