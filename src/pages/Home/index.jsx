@@ -6,8 +6,9 @@ import Header from "../../components/Header";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([<Card />, <Card />]);
 
+  // firestore
   useEffect(
     () =>
       onSnapshot(collection(db, "posts"), (snapshot) => {
@@ -15,8 +16,6 @@ const Home = () => {
       }),
     []
   );
-
-  console.log(posts.length);
 
   return (
     <main>
@@ -28,9 +27,9 @@ const Home = () => {
           posts.map((post) => (
             <Card
               key={post.id}
-              link={post.image}
-              title={post.name}
-              description={post.description}
+              link={post.imagen}
+              title={post.nombre}
+              description={post.descripcion}
             />
           ))
         )}
