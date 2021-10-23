@@ -7,7 +7,7 @@ const Textfield = ({ required, textarea, label, ...props }) => {
   // message if the field is invalid and it has been touched (i.e. visited)
   const [field, meta] = useField(props);
   return (
-    <>
+    <div className={`${styles.container} ${textarea ? styles.area : null}`}>
       <label htmlFor={props.id || props.name}>
         {label} {required ? <abbr title="Campo obligatorio">*</abbr> : null}
       </label>
@@ -17,7 +17,7 @@ const Textfield = ({ required, textarea, label, ...props }) => {
         <input className={styles.input} {...field} {...props} />
       )}
       {meta.touched && meta.error ? <div className={styles.error}>{meta.error}</div> : null}
-    </>
+    </div>
   );
 };
 
