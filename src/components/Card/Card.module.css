@@ -5,12 +5,35 @@
 
 .card:hover {
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: ease-in 0.15s;
 }
 
 .imageContainer {
-  height: 300px;
+  height: 18.75rem;
+  position: relative;
+}
+
+.icon {
+  display: inline;
+  height: 1.5rem;
+  margin: 1rem;
+  position: absolute;
+  width: 1.5rem;
+}
+
+.icon:hover {
+  filter: invert(75%);
+  transition: ease-in 0.15s;
+}
+
+.edit {
+  right: 0;
+  top: 2.5rem;
+}
+.delete {
+  right: 0;
+  top: 0;
 }
 
 .image {
