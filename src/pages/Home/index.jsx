@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
-import { collection, onSnapshot } from "@firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "@firebase/firestore";
 import db from "../../firebase";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const [posts, setPosts] = useState([<Card />, <Card />]);
+  const [posts, setPosts] = useState([<Card />]);
 
   // firestore
-  useEffect(
-    () =>
-      onSnapshot(collection(db, "posts"), (snapshot) => {
-        setPosts(snapshot.docs.map((post) => ({ ...post.data(), id: post.id })));
-      }),
-    []
-  );
+  useEffect(() => {
+    const collectionRef = collection(db, "posts");
+    const q = query(collectionRef, orderBy("horaCreacion", "desc"));
+    const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+      setPosts(snapshot.docs.map((post) => ({ ...post.data(), id: post.id })));
+    });
+    return unsubscribe;
+  }, []);
 
   return (
     <main>
@@ -30,6 +31,7 @@ const Home = () => {
               link={post.imagen}
               title={post.nombre}
               description={post.descripcion}
+              id={post.id}
             />
           ))
         )}
