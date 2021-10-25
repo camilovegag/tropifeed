@@ -1,13 +1,13 @@
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Formik, Form } from "formik";
-import { addDoc, collection } from "firebase/firestore";
+import { useHistory } from "react-router";
 import Button from "../../components/Button";
+import db from "../../firebase";
 import Header from "../../components/Header";
 import Select from "../../components/Select";
 import styles from "./Create.module.css";
 import Textfield from "../../components/Textfield";
 import validationSchema from "./validationSchema";
-import db from "../../firebase";
-import { useHistory } from "react-router";
 
 // firestore
 const createPost = async (values) => {
@@ -32,6 +32,7 @@ const Create = () => {
           lignina: "",
           hemicelulosa: "",
           descripcion: "",
+          horaCreacion: serverTimestamp(),
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
