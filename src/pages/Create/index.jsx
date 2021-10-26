@@ -39,8 +39,8 @@ const Create = () => {
           setTimeout(() => {
             createPost(values);
             setSubmitting(false);
-            alert("Post creado exitosamente");
             history.push("/posts");
+            alert("Post creado exitosamente");
           }, 400);
         }}
       >
@@ -62,10 +62,10 @@ const Create = () => {
           <Textfield label="Peso en kg" name="peso" type="tel" placeholder="0.7" required={true} />
           <Select label="Época de recolección" name="epocaDeRecoleccion">
             <option value="">Elige una opción</option>
-            <option value="lluvia">Lluvia</option>
-            <option value="sequia">Sequía</option>
-            <option value="lluvia-a-sequia">Transición de lluvia a sequía</option>
-            <option value="sequia-a-lluvia">Transición de sequía a lluvia</option>
+            <option value="Lluvia">Lluvia</option>
+            <option value="Sequía">Sequía</option>
+            <option value="Transición de lluvia a sequía">Transición de lluvia a sequía</option>
+            <option value="Transición de sequía a lluvia">Transición de sequía a lluvia</option>
           </Select>
           <Textfield label="Cantidad" name="cantidad" type="tel" placeholder="15" required={true} />
           <Textfield label="Proteina en gramos" name="proteina" type="tel" placeholder="2" />
