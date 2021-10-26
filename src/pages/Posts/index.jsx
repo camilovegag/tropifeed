@@ -1,4 +1,4 @@
-import { collection, onSnapshot } from "@firebase/firestore";
+import { collection, onSnapshot, query, orderBy } from "@firebase/firestore";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../../components/Button";
@@ -13,13 +13,14 @@ import { deletePost } from "./deletePost";
 
 const Posts = () => {
   const [userPosts, setUserPosts] = useState([]);
-  useEffect(
-    () =>
-      onSnapshot(collection(db, "posts"), (snapshot) => {
-        setUserPosts(snapshot.docs.map((post) => ({ ...post.data(), id: post.id })));
-      }),
-    []
-  );
+  useEffect(() => {
+    const collectionRef = collection(db, "posts");
+    const q = query(collectionRef, orderBy("horaCreacion", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      setUserPosts(snapshot.docs.map((post) => ({ ...post.data(), id: post.id })));
+    });
+    return unsubscribe;
+  }, []);
 
   return (
     <main>
