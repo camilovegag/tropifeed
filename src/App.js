@@ -5,12 +5,20 @@ import Layout from "./Layout";
 import Posts from "./pages/Posts";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   return (
     <Layout>
       <Router>
         <Switch>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
           <Route path="/" exact>
             <Home />
           </Route>
