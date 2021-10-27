@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const collectionRef = collection(db, "posts");
     const q = query(collectionRef, orderBy("horaCreacion", "desc"));
-    const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       setPosts(snapshot.docs.map((post) => ({ ...post.data(), id: post.id })));
     });
     return unsubscribe;
