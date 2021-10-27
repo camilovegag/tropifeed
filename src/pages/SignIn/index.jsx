@@ -17,11 +17,11 @@ const SignIn = () => {
         }}
         validationSchema={Yup.object({
           correo: Yup.string()
-            .email("Ingresa un correo electrónico válido")
-            .required("Ingresa tu correo electrónico"),
+            .email("Ingresa un correo electrónico válido.")
+            .required("Ingresa tu correo electrónico."),
           contraseña: Yup.string()
-            .min(8, "Contraseña muy débil, 8 caracteres o más")
-            .required("Ingresa tu contraseña"),
+            .min(8, "Contraseña muy débil, 8 caracteres o más.")
+            .required("Ingresa tu contraseña."),
         })}
       >
         <Form>
