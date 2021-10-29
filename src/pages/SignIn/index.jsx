@@ -5,8 +5,24 @@ import Button from "../../components/Button";
 import Header from "../../components/Header";
 import styles from "./Login.module.css";
 import Textfield from "../../components/Textfield";
+import {useState} from 'react'
+import signIn from '../../firebase';
 
 const SignIn = () => {
+
+  const [loading, setLoading] = useState(false)
+  
+  const signInUser = async (email, password) => {
+    setLoading(true)
+    try {
+      await signIn(email, password);
+    
+    } catch {
+      alert('Error, el email ingresado ya está en uso.')      
+    }
+    setLoading(false)
+  };
+
   return (
     <main>
       <Header title="Iniciar sesión" />
@@ -23,6 +39,14 @@ const SignIn = () => {
             .min(8, "Contraseña muy débil, 8 caracteres o más.")
             .required("Ingresa tu contraseña."),
         })}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            signInUser(values.correo, values.contraseña);
+            setSubmitting(false);
+            history.push("/");
+          }, 400);
+        }}
+        
       >
         <Form>
           <Textfield name="correo" type="email" placeholder="tucorreo@email.com" />
