@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import { Form, Formik } from "formik";
 import { signUp } from "../../firebase";
 import { useHistory } from "react-router-dom";
@@ -8,9 +9,17 @@ import Textfield from "../../components/Textfield";
 import arrowBack from "../../components/Header/arrowBack.svg";
 
 const SignUp = () => {
+  const [loading, setLoading] = useState(false)
   const history = useHistory();
   const createUser = async (email, password) => {
-    await signUp(email, password);
+    setLoading(true)
+    try {
+      await signUp(email, password);
+      
+    } catch {
+      alert('Error, el email ingresado ya está en uso.')      
+    }
+    setLoading(false)
   };
   return (
     <main>
@@ -40,7 +49,7 @@ const SignUp = () => {
         <Form>
           <Textfield name="correo" type="email" placeholder="tucorreo@email.com" />
           <Textfield name="contraseña" type="password" placeholder="••••••••" />{" "}
-          <Button text="Crear cuenta" type="submit" />
+          <Button disabled={loading} text="Crear cuenta" type="submit" />
         </Form>
       </Formik>
     </main>
